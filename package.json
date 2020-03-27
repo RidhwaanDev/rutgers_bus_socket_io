@@ -1,0 +1,20 @@
+{
+  "name": "rutgers_bus_socket_io",
+  "version": "1.0.0",
+  "description": "Rutgers bus tracking with Socket.io",
+  "main": "server.js",
+  "scripts": {
+    "test": "test",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RidhwaanDev/rutgers_bus_socket_io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RidhwaanDev/rutgers_bus_socket_io/issues"
+  },
+  "homepage": "https://github.com/RidhwaanDev/rutgers_bus_socket_io#readme"
+}
