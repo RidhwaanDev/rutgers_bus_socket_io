@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/RidhwaanDev/rutgers_bus_socket_io/issues"
   },
-  "homepage": "https://github.com/RidhwaanDev/rutgers_bus_socket_io#readme"
+  "homepage": "https://github.com/RidhwaanDev/rutgers_bus_socket_io#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "package.json": "^2.0.1",
+    "socket.io": "^2.3.0"
+  }
 }
