@@ -39,6 +39,5 @@ function getVehiclesData(){
    'agencies' : '1323' 
  } 
 };
- 
  return axios.get(URL,h);
 }
