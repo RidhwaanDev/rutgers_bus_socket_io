@@ -29,9 +29,11 @@
 	 lat: 40.499820,
   	 lng: -74.448530,
       };
-
+      var icons = {bus: {icon: "https://i.ibb.co/khfnZ1g/bus-icon.png"
+}};
       let markers = [];
 
+	
       function initMap(){
 	  map = new google.maps.Map(document.getElementById('map'), {
     	  zoom: 14,
@@ -40,8 +42,16 @@
       }
 	
 	function addMarker(vehicle) {
+	var markerImage = new google.maps.MarkerImage(
+	    icons['bus'].icon,
+	    new google.maps.Size(32,64), //size
+	    null, //origin
+	    null, //anchor
+	    new google.maps.Size(32,64) //scale
+	);
 	     var marker = new google.maps.Marker({
   		 position : vehicle['location'],
+		     icon: markerImage,
 		 title: vehicle['vehicle_id']
 	     });
 	     markers.push(marker);
