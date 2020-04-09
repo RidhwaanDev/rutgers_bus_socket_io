@@ -30,23 +30,61 @@
   	 lng: -74.448530,
       };
 
+      let markers = [];
+
       function initMap(){
 	  map = new google.maps.Map(document.getElementById('map'), {
     	  zoom: 14,
     	  center: { lat: locations.lat, lng: locations.lng }
         });
       }
-        socket.on('vehicles', function(data){
-	    data.forEach(vehicle => {
-	    console.log(vehicle); 
-           	 new google.maps.Circle({
-      		 strokeWeight: 100,
-      		 fillColor: '#000000',
-      		 map: map,
-  		 center : vehicle['location'],
-		 radius: 80,
+	
+	function addMarker(vehicle) {
+	     var marker = new google.maps.Marker({
+  		 position : vehicle['location'],
+		 title: vehicle['vehicle_id']
 	     });
-	 });
+	     markers.push(marker);
+	}
+	
+	function setMapOnAll(map) {
+	        for (var i = 0; i < markers.length; i++) {
+			markers[i].setMap(map);
+		}
+	}
+	
+	function removeMarkers() {
+		for (var i = 0; i < markers.length; i++) {
+			if (markers[i] !== null) {
+				markers[i].setMap(null);
+			}
+		}
+		markers.splice(0, markers.length)
+		
+	}
+
+	function updateMarker(vehicle) {
+		for (var i = 0; i < markers.length; i++) {
+			let marker = markers[i];
+			if (vehicle['vehicle_id'] === marker.title) {
+				marker.setPosition(vehicle['location']);
+				break;
+			}
+		}
+		addMarker(vehicle);
+	}
+
+        socket.on('vehicles', function(data){
+	    if (markers.length === 0) {
+	    data.forEach(vehicle => {
+           		 addMarker(vehicle);
+	    });
+	    setMapOnAll(map);
+	    } else {
+		data.forEach(vehicle => {
+           		 updateMarker(vehicle);
+	    	});
+	    }
        });
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBG5HdtAIB3OV-jC37XmrrgnW4T2Leep8E&callback=initMap&libraries=geometry"></script>
